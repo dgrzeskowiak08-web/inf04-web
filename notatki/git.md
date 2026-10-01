@@ -9,3 +9,5 @@
 - \git commit\: Zapisuje stan z poczekalni jako nowa migawke w historii.
 - \git log\: Wyswietla historie wykonanych commitow.
 
+- \git push\: Wysyla lokalne commity do zdalnego repozytorium.
+
