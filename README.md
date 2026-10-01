@@ -1,4 +1,4 @@
-﻿# INF.04 – wersja glowna
+﻿# INF.04 – aplikacje webowe
 
 Repozytorium z zadaniami z przedmiotu.
 
