@@ -7,3 +7,7 @@ Repozytorium z zadaniami z przedmiotu.
 
 ## Cel
 Nauka i archiwizacja rozwiazan z zajec.
+
+
+## Kontakt
+E-mail ucznia.
