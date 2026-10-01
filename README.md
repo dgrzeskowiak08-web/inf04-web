@@ -1,4 +1,4 @@
-﻿# INF.04 – aplikacje webowe
+﻿# INF.04 – wersja z galezi
 
 Repozytorium z zadaniami z przedmiotu.
 
