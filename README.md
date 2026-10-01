@@ -20,3 +20,7 @@ E-mail ucznia.
 | Bootstrap | Framework CSS pomagajacy w szybkim stylizowaniu stron. |
 | Vite | Narzedzie do szybkiego budowania i serwowania aplikacji webowych. |
 | Vitest | Narzedzie do pisania i uruchamiania testow jednostkowych. |
+
+
+## Jak oddaje zadania
+Workflow: galaz inf04-mbNN -> push -> PR -> merge
