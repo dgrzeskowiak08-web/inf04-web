@@ -6,3 +6,6 @@
 - \git status\: Pokazuje stan plikow (zmodyfikowane, dodane do poczekalni, niesledzone).
 - \git add\: Dodaje pliki do poczekalni (staging area) przed commitem.
 
+- \git commit\: Zapisuje stan z poczekalni jako nowa migawke w historii.
+- \git log\: Wyswietla historie wykonanych commitow.
+
