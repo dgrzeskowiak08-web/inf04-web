@@ -1,4 +1,4 @@
-﻿# INF.04 – wersja z galezi
+﻿# INF.04 – wersja glowna
 
 Repozytorium z zadaniami z przedmiotu.
 
