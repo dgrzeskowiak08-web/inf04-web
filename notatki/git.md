@@ -1,0 +1,2 @@
+﻿# Sciaga z komend Git
+
