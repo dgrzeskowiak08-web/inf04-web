@@ -1,5 +1,6 @@
 import Navbar from './components/Navbar.jsx'
 import CategoryBar from './components/CategoryBar.jsx'
+import Gallery from './components/Gallery.jsx'
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
 
       <main className="container">
         <CategoryBar />
+        <Gallery />
       </main>
     </>
   )
