@@ -1,0 +1,37 @@
+import Navbar from './components/Navbar.jsx'
+import CategoryBar from './components/CategoryBar.jsx'
+import Gallery from './components/Gallery.jsx'
+import Footer from './components/Footer.jsx'
+import AddPhotoModal from './components/AddPhotoModal.jsx'
+import FiltersOffcanvas from './components/FiltersOffcanvas.jsx'
+import './App.css'
+
+function App() {
+  return (
+    <>
+      <Navbar />
+
+      <header className="container py-4 py-lg-5">
+        <div className="row align-items-center g-3">
+          <div className="col-12 col-lg-8">
+            <h1 className="mb-2">Galeria zdjęć</h1>
+            <p className="lead text-body-secondary mb-0">
+              Zdjęcia z wypraw w góry, nad morze i po mieście. Wybierz kategorię,
+              żeby zawęzić widok – albo powiększ zdjęcie, które Ci się spodoba.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <main className="container">
+        <CategoryBar />
+        <Gallery />
+        <Footer/>
+        <AddPhotoModal/>
+        <FiltersOffcanvas />
+      </main>
+    </>
+  )
+}
+
+export default App
