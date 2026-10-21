@@ -1,4 +1,14 @@
-function FiltersOffcanvas() {
+const KATEGORIE = [
+    { value: 'gory', label: 'Góry' },
+    { value: 'morze', label: 'Morze' },
+    { value: 'miasto', label: 'Miasto' },
+]
+
+function FiltersOffcanvas({ aktywna, onWybierz }) {
+    function przełącz(kategoria) {
+        onWybierz(aktywna === kategoria ? 'wszystkie' : kategoria)
+    }
+
     return (
         <div
             className="offcanvas offcanvas-start"
@@ -18,41 +28,22 @@ function FiltersOffcanvas() {
                 ></button>
             </div>
             <div className="offcanvas-body">
-                <p className="text-body-secondary">Zaznacz kategorie, które chcesz zobaczyć:</p>
+                <p className="text-body-secondary">Zaznacz kategorię, którą chcesz zobaczyć:</p>
 
-                <div className="form-check">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="filtrGory"
-                        defaultChecked
-                    />
-                    <label className="form-check-label" htmlFor="filtrGory">
-                        Góry
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="filtrMorze"
-                        defaultChecked
-                    />
-                    <label className="form-check-label" htmlFor="filtrMorze">
-                        Morze
-                    </label>
-                </div>
-                <div className="form-check">
-                    <input
-                        className="form-check-input"
-                        type="checkbox"
-                        id="filtrMiasto"
-                        defaultChecked
-                    />
-                    <label className="form-check-label" htmlFor="filtrMiasto">
-                        Miasto
-                    </label>
-                </div>
+                {KATEGORIE.map(kategoria => (
+                    <div className="form-check" key={kategoria.value}>
+                        <input
+                            className="form-check-input"
+                            type="checkbox"
+                            id={`filtr-${kategoria.value}`}
+                            checked={aktywna === kategoria.value || aktywna === 'wszystkie'}
+                            onChange={() => przełącz(kategoria.value)}
+                        />
+                        <label className="form-check-label" htmlFor={`filtr-${kategoria.value}`}>
+                            {kategoria.label}
+                        </label>
+                    </div>
+                ))}
 
                 <button
                     type="button"

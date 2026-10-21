@@ -1,12 +1,37 @@
+import { useState } from 'react'
 import Navbar from './components/Navbar.jsx'
 import CategoryBar from './components/CategoryBar.jsx'
 import Gallery from './components/Gallery.jsx'
-import Footer from './components/Footer.jsx'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FiltersOffcanvas from './components/FiltersOffcanvas.jsx'
+import Footer from './components/Footer.jsx'
+import photos from './data/photos.json'
 import './App.css'
 
 function App() {
+  const [zdjecia, setZdjecia] = useState(photos)
+  const [aktywnaKategoria, setAktywnaKategoria] = useState('wszystkie')
+
+  const widoczne =
+    aktywnaKategoria === 'wszystkie'
+      ? zdjecia
+      : zdjecia.filter(z => z.category === aktywnaKategoria)
+
+  function usunZdjecie(id) {
+    setZdjecia(zdjecia.filter(z => z.id !== id))
+  }
+
+  function dodajZdjecie(nowe) {
+    const noweId = Math.max(...zdjecia.map(z => z.id)) + 1
+    setZdjecia([...zdjecia, { ...nowe, id: noweId, favorite: false }])
+  }
+
+  function przelaczUlubione(id) {
+    setZdjecia(
+      zdjecia.map(z => (z.id === id ? { ...z, favorite: !z.favorite } : z))
+    )
+  }
+
   return (
     <>
       <Navbar />
@@ -24,12 +49,28 @@ function App() {
       </header>
 
       <main className="container">
-        <CategoryBar />
-        <Gallery />
-        <Footer/>
-        <AddPhotoModal/>
-        <FiltersOffcanvas />
+        <CategoryBar aktywna={aktywnaKategoria} onWybierz={setAktywnaKategoria} />
+
+        <p className="text-body-secondary">
+          Wyświetlono {widoczne.length} z {zdjecia.length} zdjęć
+        </p>
+
+        {widoczne.length === 0 && (
+          <div className="alert alert-warning">
+            Nie znaleziono zdjęć w tej kategorii.
+          </div>
+        )}
+
+        <Gallery
+          zdjecia={widoczne}
+          onUsun={usunZdjecie}
+          onPrzelacz={przelaczUlubione}
+        />
       </main>
+
+      <Footer />
+      <AddPhotoModal onDodaj={dodajZdjecie} />
+      <FiltersOffcanvas aktywna={aktywnaKategoria} onWybierz={setAktywnaKategoria} />
     </>
   )
 }

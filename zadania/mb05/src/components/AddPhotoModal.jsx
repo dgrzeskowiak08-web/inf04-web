@@ -1,4 +1,37 @@
-function AddPhotoModal() {
+import { useState } from 'react'
+import { Modal } from 'bootstrap'
+
+const PUSTY_FORMULARZ = {
+    title: '',
+    category: '',
+    image: '',
+    alt: '',
+    description: '',
+}
+
+function AddPhotoModal({ onDodaj }) {
+    const [formularz, setFormularz] = useState(PUSTY_FORMULARZ)
+
+    function zmienPole(pole) {
+        return function (event) {
+            setFormularz({ ...formularz, [pole]: event.target.value })
+        }
+    }
+
+    function obslugaSubmit(event) {
+        event.preventDefault()
+        onDodaj({
+            title: formularz.title,
+            category: formularz.category,
+            image: formularz.image,
+            imageLarge: formularz.image,
+            alt: formularz.alt,
+            description: formularz.description,
+        })
+        setFormularz(PUSTY_FORMULARZ)
+        Modal.getInstance(document.getElementById('dodajZdjecie'))?.hide()
+    }
+
     return (
         <div
             className="modal fade"
@@ -20,8 +53,8 @@ function AddPhotoModal() {
                             aria-label="Zamknij"
                         ></button>
                     </div>
-                    <div className="modal-body">
-                        <form>
+                    <form onSubmit={obslugaSubmit}>
+                        <div className="modal-body">
                             <div className="row g-3">
                                 <div className="col-md-6">
                                     <label htmlFor="tytul" className="form-label">
@@ -29,12 +62,11 @@ function AddPhotoModal() {
                                     </label>
                                     <input
                                         type="text"
-                                        className="form-control is-invalid"
+                                        className="form-control"
                                         id="tytul"
+                                        value={formularz.title}
+                                        onChange={zmienPole('title')}
                                     />
-                                    <div className="invalid-feedback">
-                                        Podaj tytuł zdjęcia – to pole jest wymagane.
-                                    </div>
                                 </div>
                                 <div className="col-md-6">
                                     <label htmlFor="kategoria" className="form-label">
@@ -43,7 +75,8 @@ function AddPhotoModal() {
                                     <select
                                         className="form-select"
                                         id="kategoria"
-                                        defaultValue=""
+                                        value={formularz.category}
+                                        onChange={zmienPole('category')}
                                     >
                                         <option value="" disabled>
                                             Wybierz kategorię...
@@ -54,18 +87,29 @@ function AddPhotoModal() {
                                     </select>
                                 </div>
                                 <div className="col-12">
-                                    <label htmlFor="plik" className="form-label">
-                                        Plik ze zdjęciem
+                                    <label htmlFor="obrazek" className="form-label">
+                                        Adres URL zdjęcia
                                     </label>
                                     <input
-                                        type="file"
+                                        type="text"
                                         className="form-control"
-                                        id="plik"
-                                        accept="image/*"
+                                        id="obrazek"
+                                        placeholder="https://..."
+                                        value={formularz.image}
+                                        onChange={zmienPole('image')}
                                     />
-                                    <div className="form-text">
-                                        JPG lub PNG, maksymalnie 5 MB.
-                                    </div>
+                                </div>
+                                <div className="col-12">
+                                    <label htmlFor="alt" className="form-label">
+                                        Tekst alternatywny
+                                    </label>
+                                    <input
+                                        type="text"
+                                        className="form-control"
+                                        id="alt"
+                                        value={formularz.alt}
+                                        onChange={zmienPole('alt')}
+                                    />
                                 </div>
                                 <div className="col-12">
                                     <label htmlFor="opis" className="form-label">
@@ -75,41 +119,25 @@ function AddPhotoModal() {
                                         className="form-control"
                                         id="opis"
                                         rows="3"
+                                        value={formularz.description}
+                                        onChange={zmienPole('description')}
                                     ></textarea>
-                                    <div className="form-text">
-                                        Jedno-dwa zdania: gdzie i kiedy powstało zdjęcie.
-                                    </div>
-                                </div>
-                                <div className="col-12">
-                                    <div className="form-check">
-                                        <input
-                                            className="form-check-input"
-                                            type="checkbox"
-                                            id="zgoda"
-                                        />
-                                        <label
-                                            className="form-check-label"
-                                            htmlFor="zgoda"
-                                        >
-                                            Zgadzam się na publikację zdjęcia w galerii
-                                        </label>
-                                    </div>
                                 </div>
                             </div>
-                        </form>
-                    </div>
-                    <div className="modal-footer">
-                        <button
-                            type="button"
-                            className="btn btn-secondary"
-                            data-bs-dismiss="modal"
-                        >
-                            Anuluj
-                        </button>
-                        <button type="submit" className="btn btn-primary">
-                            Zapisz
-                        </button>
-                    </div>
+                        </div>
+                        <div className="modal-footer">
+                            <button
+                                type="button"
+                                className="btn btn-secondary"
+                                data-bs-dismiss="modal"
+                            >
+                                Anuluj
+                            </button>
+                            <button type="submit" className="btn btn-primary">
+                                Zapisz
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
