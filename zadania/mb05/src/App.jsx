@@ -1,12 +1,26 @@
 import Navbar from './components/Navbar.jsx'
+import CategoryBar from './components/CategoryBar.jsx'
 
 function App() {
   return (
     <>
       <Navbar />
-      <div className="container mt-4">
-        <h1>Galeria zdjęć</h1>
-      </div>
+
+      <header className="container py-4 py-lg-5">
+        <div className="row align-items-center g-3">
+          <div className="col-12 col-lg-8">
+            <h1 className="mb-2">Galeria zdjęć</h1>
+            <p className="lead text-body-secondary mb-0">
+              Zdjęcia z wypraw w góry, nad morze i po mieście. Wybierz kategorię,
+              żeby zawęzić widok – albo powiększ zdjęcie, które Ci się spodoba.
+            </p>
+          </div>
+        </div>
+      </header>
+
+      <main className="container">
+        <CategoryBar />
+      </main>
     </>
   )
 }
