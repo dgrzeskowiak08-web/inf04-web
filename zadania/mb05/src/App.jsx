@@ -1,16 +1,19 @@
+import { useState } from 'react'
 import Navbar from './components/Navbar.jsx'
 import CategoryBar from './components/CategoryBar.jsx'
 import Gallery from './components/Gallery.jsx'
-import Footer from './components/Footer.jsx'
 import AddPhotoModal from './components/AddPhotoModal.jsx'
 import FiltersOffcanvas from './components/FiltersOffcanvas.jsx'
+import Footer from './components/Footer.jsx'
+import photos from './data/photos.json'
 import './App.css'
 
 function App() {
+  const [zdjecia, setZdjecia] = useState(photos)
+
   return (
     <>
       <Navbar />
-
       <header className="container py-4 py-lg-5">
         <div className="row align-items-center g-3">
           <div className="col-12 col-lg-8">
@@ -22,14 +25,13 @@ function App() {
           </div>
         </div>
       </header>
-
       <main className="container">
         <CategoryBar />
-        <Gallery />
-        <Footer/>
-        <AddPhotoModal/>
-        <FiltersOffcanvas />
+        <Gallery zdjecia={zdjecia} />
       </main>
+      <Footer />
+      <AddPhotoModal />
+      <FiltersOffcanvas />
     </>
   )
 }

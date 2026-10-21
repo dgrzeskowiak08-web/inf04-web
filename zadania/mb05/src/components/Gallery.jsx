@@ -1,12 +1,11 @@
 import { Fragment } from 'react'
-import photos from '../data/photos.json'
 import PhotoCard from './PhotoCard.jsx'
 import PhotoModal from './PhotoModal.jsx'
 
-function Gallery() {
+function Gallery({ zdjecia }) {
     return (
         <div id="galeria" className="row g-4">
-            {photos.map(photo => (
+            {zdjecia.map(photo => (
                 <Fragment key={photo.id}>
                     <div className="col-12 col-md-6 col-lg-4">
                         <PhotoCard {...photo} />
