@@ -1,8 +1,14 @@
+import Navbar from './components/Navbar.jsx'
+
 function App() {
   return (
-    <div className="container mt-4">
-      <h1>Galeria zdjęć</h1>
-    </div>
+    <>
+      <Navbar />
+      <div className="container mt-4">
+        <h1>Galeria zdjęć</h1>
+      </div>
+    </>
   )
 }
+
 export default App
